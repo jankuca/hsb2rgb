@@ -10,6 +10,9 @@ function hsb2rgb(hue, saturation, value) {
     ? parseInt(value, 10) / 100
     : parseFloat(value, 10);
 
+  saturation = Math.max(0, Math.min(saturation, 1));
+  value = Math.max(0, Math.min(value, 1));
+
   var rgb;
   if (saturation === 0) {
     return [

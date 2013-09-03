@@ -22,6 +22,14 @@ describe('hsb2rgb', function () {
     assert.deepEqual(hsb2rgb(0, 0, .5), [ 128, 128, 128 ]);
   });
 
+  it('should return RGB values in the range of 0-255', function () {
+    assert.equal(hsb2rgb(0, 0, 1.5)[0], 255);
+    assert.equal(hsb2rgb(0, 0, -1.5)[0], 0);
+    assert.deepEqual(hsb2rgb(220, .43, 1.5), hsb2rgb(220, .43, 1));
+    assert.deepEqual(hsb2rgb(220, .43, -1.5), hsb2rgb(220, .43, 0));
+    assert.deepEqual(hsb2rgb(220, .43, .3), hsb2rgb(220 + 360, .43, .3));
+  });
+
   it('should allow percentage as the units', function () {
     assert.deepEqual(hsb2rgb(220, '43%', '30%'), [ 44, 55, 77 ]);
   });
